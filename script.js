@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     gameOver = false;
 
     window.handleClick = async function (element) {
+        if (gameOver)
+        {
+            return
+        }
         if (element.innerText !== "" || gameOver) {
             document.getElementById("head").innerText = "Already filled!";
             document.getElementById("head").style.color = "white";
@@ -36,15 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function incrementWinner() {
         const winCombos = [
-            ["1", "2", "3"],
-            ["4", "5", "6"],
-            ["7", "8", "9"],
-            ["1", "4", "7"],
-            ["2", "5", "8"],
-            ["3", "6", "9"],
-            ["1", "5", "9"],
-            ["3", "5", "7"]
+            ["tile-1", "tile-2", "tile-3"],
+            ["tile-4", "tile-5", "tile-6"],
+            ["tile-7", "tile-8", "tile-9"],
+            ["tile-1", "tile-4", "tile-7"],
+            ["tile-2", "tile-5", "tile-8"],
+            ["tile-3", "tile-6", "tile-9"],
+            ["tile-1", "tile-5", "tile-9"],
+            ["tile-3", "tile-5", "tile-7"]
         ];
+        
 
         for (let combo of winCombos) {
             const [a, b, c] = combo.map(id => document.getElementById(id));
