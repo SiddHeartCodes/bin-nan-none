@@ -1,0 +1,75 @@
+.tile
+{
+    border: 5px dashed rgba(155, 255, 33, 0.79);
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+
+    color:greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-family: "Press Start 2P", system-ui;
+}
+
+.tile:hover
+{
+    border: 5px dashed rgb(255, 255, 255);
+    transform: scale(1.1);
+    cursor: pointer;  
+}
+
+.row
+{
+    display:flex;
+    height:130px;
+}
+
+.grid
+{
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+}
+
+#head
+{
+    font-family: "Press Start 2P", system-ui;
+    color: rgb(41, 225, 56);
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.reset
+{
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 5px 30px;
+    background-color: rgb(41, 225, 56);;
+    font-family: "Press Start 2P", system-ui;
+
+}
+
+.reset:hover
+{
+    border: 4px solid rgba(255, 255, 255, 0.889);
+    transform: scale(1.1);
+    cursor: pointer;  
+}
+body
+{
+    background-image: url("200.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+html, body {
+    height: 100%;
+    margin: 0; /* Also remove default margin */
+}
