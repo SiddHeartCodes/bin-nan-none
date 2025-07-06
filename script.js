@@ -1,48 +1,83 @@
+let turn = "1";
+let count = 0;
+let gameOver = false;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  
-async function handleClick(element)
-{
-    if(element.innerText!="")
+}
+
+async function handleClick(element) {
+    if (gameOver)
     {
-        document.getElementById("head").innerText="Already filled!"
-        document.getElementById("head").style.color="white"
-        await sleep(500)
-        document.getElementById("head").style.color="rgb(41, 225, 56)"
-        changeHead()
-        
+        return
     }
-    else if (turn=="1")
-    {
-        
-    element.textContent="1"
-    turn="2"
+    if (element.innerText !== "" || gameOver) {
+        document.getElementById("head").innerText = "Already filled!";
+        document.getElementById("head").style.color = "white";
+        await sleep(500);
+        document.getElementById("head").style.color = "rgb(41, 225, 56)";
+        changeHead();
+        return;
     }
-    else
-    {
-        element.textContent="0"
-        turn="1"
+
+    if (turn === "1") {
+        element.textContent = "1";
+        turn = "2";
+    } else {
+        element.textContent = "0";
+        turn = "1";
     }
-    changeHead()
+
+    count++;
+    if (count >= 5) incrementWinner(); // <-- ✅ winner check
+
+    changeHead();
 }
 
 function reloadPage() {
     location.reload();
 }
 
+function changeHead() {
+    let head = document.getElementById("head");
+    if (gameOver) return;
 
-function changeHead(){
-    let head=document.getElementById("head")
-    if (turn=="1"){
-        head.textContent="Player 01's Turn"
-    }
-    else
-    {
-        head.textContent="Player 10's Turn"
-    }   
-
-
+    head.textContent = turn === "1" ? "Player 01's Turn" : "Player 10's Turn";
 }
-turn="1"
+
+function incrementWinner() {
+    const winCombos = [
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"],
+        ["1", "4", "7"],
+        ["2", "5", "8"],
+        ["3", "6", "9"],
+        ["1", "5", "9"],
+        ["3", "5", "7"]
+    ];
+
+    for (let combo of winCombos) {
+        const [a, b, c] = combo.map(id => document.getElementById(id));
+        if (
+            a.innerText !== "" &&
+            a.innerText === b.innerText &&
+            a.innerText === c.innerText
+        ) {
+            a.classList.add("winner");
+            b.classList.add("winner");
+            c.classList.add("winner");
+
+            document.getElementById("head").textContent =
+                a.innerText === "1" ? "Player 01 Wins!" : "Player 10 Wins!";
+
+            gameOver = true;
+            return;
+        }
+    }
+
+    if (count === 9 && !gameOver) {
+        document.getElementById("head").textContent = "It's a Draw!";
+        gameOver = true;
+    }
+}

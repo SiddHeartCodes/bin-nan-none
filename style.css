@@ -40,6 +40,11 @@
     text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
+.winner {
+    border: 5px solid rgb(255, 255, 255);
+    transform: scale(1.1);
+}
+
 .reset
 {
     color: rgb(0, 0, 0);
