@@ -34,8 +34,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function changeHead() {
         let head = document.getElementById("head");
-        if (gameOver) return;
-        head.textContent = turn === "1" ? "Player 01's Turn" : "Player 10's Turn";
+        if (turn === "1") {
+            head.textContent = "Player 01's Turn";
+            head.style.color = "yellow";  // lime/yellow hybrid, more visible
+        } else {
+            head.textContent = "Player 10's Turn";
+            head.style.color = "#FF3CAC";  // neon pink
+        }
+        
     }
 
     function incrementWinner() {
@@ -71,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (count === 9 && !gameOver) {
             document.getElementById("head").textContent = "It's a Draw!";
+            document.getElementById("head").style.color = "white";
             gameOver = true;
         }
     }

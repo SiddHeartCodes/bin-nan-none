@@ -41,10 +41,6 @@
     text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
-.winner {
-    border: 5px solid rgb(255, 255, 255);
-    transform: scale(1.1);
-}
 
 .reset
 {
@@ -52,7 +48,7 @@
     font-weight: bold;
     margin-top: 15px;
     padding: 5px 30px;
-    background-color: rgb(41, 225, 56);;
+    background-color: rgb(41, 225, 56);
     font-family: "Press Start 2P", system-ui;
 
 }
@@ -78,4 +74,39 @@ body
 html, body {
     height: 100%;
     margin: 0; /* Also remove default margin */
+}
+
+.winner {
+    border: 5px solid rgb(255, 255, 255);
+    background-color:  rgb(41, 225, 56);
+    color: rgb(255, 255, 255);
+    text-shadow:none;
+    transform: scale(1.1);
+}
+
+.winner:hover
+{
+    border: 5px solid rgb(255, 255, 255);
+
+}
+
+
+@keyframes flicker {
+    0%   { opacity: 0.8; transform: scale(1); }
+    50%  { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.9; transform: scale(1); }
+}
+
+.player01 {
+    color: #00ff88; /* neon mint */
+    text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88;
+    animation: flicker 0.3s ease-in-out;
+    transition: all 0.2s ease;
+}
+
+.player10 {
+    color: #00ccff; /* electric cyan */
+    text-shadow: 0 0 5px #00ccff, 0 0 10px #00ccff;
+    animation: flicker 0.3s ease-in-out;
+    transition: all 0.2s ease;
 }
