@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
             element.textContent = "0";
             turn = "1";
         }
+        changeHead();
 
         count++;
         if (count >= 5) incrementWinner();
 
-        changeHead();
     };
 
     function changeHead() {
@@ -68,8 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 a.classList.add("winner");
                 b.classList.add("winner");
                 c.classList.add("winner");
-                document.getElementById("head").textContent =
-                    a.innerText === "1" ? "Player 01 Wins!" : "Player 10 Wins!";
+                const head = document.getElementById("head");
+
+                if (a.innerText === "1") {
+                    head.textContent = "Player 01 Wins!";
+                    head.style.color = "yellow"; // bright neon green
+                } else {
+                    head.textContent = "Player 10 Wins!";
+                    head.style.color = "#FF3CAC"; // glitchy red
+                }
                 gameOver = true;
                 return;
             }
